@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+.app {
+  overflow: auto;
+  height: 1px;
+  min-height: 100vh;
+}
+.layout {
+  overflow: auto;
+  display: grid;
+  grid-template:
+    "add-contact" min-content
+    "contact-list" 1fr
+    "contact-detail" auto
+    / 1fr;
+  align-content: stretch;
+}
+
+.add-contact {
+  grid-area: add-contact;
+}
+
+.contact-list {
+  overflow: auto;
+  grid-area: contact-list;
+}
+
+.contact-detail {
+  grid-area: contact-detail;
+  overflow: auto;
+  min-height: 240px;
+}
+
+.appear-later {
+  animation: appear 0.5s 0.5s ease-in forwards;
+  opacity: 0;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .layout {
+    grid-template:
+      "add-contact contact-detail" min-content
+      "contact-list contact-detail" auto
+      "contact-list contact-detail" fit-content(100%)
+      / minmax(360px, 1fr) 11fr;
+  }
+}

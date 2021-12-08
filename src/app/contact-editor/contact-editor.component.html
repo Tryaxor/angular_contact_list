@@ -1,0 +1,30 @@
+<div class="p-2">
+<h3>Add a contact</h3>
+<form [formGroup]="profileForm" (ngSubmit)="addUser()" class="d-flex flex-column">
+  <label for="name">Name: </label>
+  <input id="name" type="text" class="form-control" formControlName="name">
+
+  <label for="username">User Name: </label>
+  <input id="username" type="text" class="form-control" formControlName="username">
+
+  <label for="email">Email: </label>
+  <input id="email" type="text" class="form-control" formControlName="email">
+
+  <button (click)="addUser" class="btn btn-primary mt-2" [disabled]="!profileForm.valid">Submit</button>
+
+  <div *ngIf="profileForm.invalid && (profileForm.dirty || profileForm.touched)" class="alert alert-danger p-1 mt-2 mb-0">
+    <ul class="m-0">
+
+      <li *ngIf="profileForm.controls['email'].errors != null">
+        A valid email must be given
+      </li>
+      <li *ngIf="profileForm.controls['username'].errors != null">
+        Username is required
+      </li>
+      <li *ngIf="profileForm.controls['name'].errors != null">
+        Name can't contain numbers
+      </li>
+    </ul>
+  </div>
+</form>
+</div>
